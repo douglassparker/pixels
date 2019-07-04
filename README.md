@@ -36,4 +36,4 @@ After building:
 cd target
 java -jar pixels*.jar
 ```
-On my laptop, the project takes around 11 minutes to run. Copious numbers of Reactor generated log messages will appear on the console. However, logging happens asynchronously, so there is little performance degradation due to logging. After completion the log file is target/pixels.log and the results are in target/pixels.txt.  
+On my laptop, the project takes around 11 minutes to run. Copious numbers of Reactor generated log messages will appear on the console. However, logging happens asynchronously, so there is little performance degradation due to logging. After completion the log file is **target/pixels.log** and the results are in **target/pixels.txt**. Have a look at the generated Javadoc at **target/site/apidocs/index.html** and **target/site/testapidocs/index.html**.
