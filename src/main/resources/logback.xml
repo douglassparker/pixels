@@ -3,49 +3,49 @@ A basic logback connfiguration that provides asynchronous logging.
  -->
 <!DOCTYPE configuration>
 <configuration>
-	<property name="LOG_FILE" value="pixels.log" />
-	<property name="PATTERN" value = "%d %-5level [%thread] %logger{0}: %msg%n" />
-	
-	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
-		<encoder>
-			<pattern>${PATTERN}</pattern>
-		</encoder>
-	</appender>
+    <property name="LOG_FILE" value="pixels.log" />
+    <property name="PATTERN" value = "%d %-5level [%thread] %logger{0}: %msg%n" />
 
-	<appender name="FILE"
-		class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<encoder>
-			<pattern>${PATTERN}</pattern>
-		</encoder>
-		<file>${LOG_FILE}</file>
-		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-			<fileNamePattern>${LOG_FILE}.%d{yyyy-MM-dd}.%i.gz</fileNamePattern>
-			<maxFileSize>${LOG_FILE_MAX_SIZE:-10MB}</maxFileSize>
-			<maxHistory>${LOG_FILE_MAX_HISTORY:-0}</maxHistory>
-		</rollingPolicy>
-	</appender>
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="FILE"
+        class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder>
+            <pattern>${PATTERN}</pattern>
+        </encoder>
+        <file>${LOG_FILE}</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_FILE}.%d{yyyy-MM-dd}.%i.gz</fileNamePattern>
+            <maxFileSize>${LOG_FILE_MAX_SIZE:-10MB}</maxFileSize>
+            <maxHistory>${LOG_FILE_MAX_HISTORY:-0}</maxHistory>
+        </rollingPolicy>
+    </appender>
  
     <appender name="ASYNC_CONSOLE" 
-    		class="ch.qos.logback.classic.AsyncAppender">
+            class="ch.qos.logback.classic.AsyncAppender">
         <!-- 
         default 20, means drop lower event when has 20% capacity 
         remaining 
         -->
- 		<!-- <discardingThreshold>0</discardingThreshold> -->
+         <!-- <discardingThreshold>0</discardingThreshold> -->
         
         <appender-ref ref="CONSOLE" />
         
         <!-- default 256 -->
-		<!-- <queueSize>1</queueSize>  -->
-		
-		<!-- default false -->
-		<!-- <includeCallerData>false</includeCallerData> -->
-		
-		<!-- 
-		default false, set to true to cause the Appender not block the 
-		application and just drop the messages 
-		-->        
-		<!-- <neverBlock>true</neverBlock> -->
+        <!-- <queueSize>1</queueSize>  -->
+ 
+         <!-- default false -->
+        <!-- <includeCallerData>false</includeCallerData> -->
+
+        <!-- 
+        default false, set to true to cause the Appender not block the 
+        application and just drop the messages 
+        -->        
+        <!-- <neverBlock>true</neverBlock> -->
     </appender>
  
     <appender name="ASYNC_FILE"
@@ -54,27 +54,27 @@ A basic logback connfiguration that provides asynchronous logging.
         default 20, means drop lower event when has 20% capacity 
         remaining 
         -->
- 		<!-- <discardingThreshold>0</discardingThreshold> -->
+         <!-- <discardingThreshold>0</discardingThreshold> -->
         
         <appender-ref ref="FILE" />
         
         <!-- default 256 -->
-		<!-- <queueSize>1</queueSize>  -->
-		
-		<!-- default false -->
-		<!-- <includeCallerData>false</includeCallerData> -->
-		
-		<!-- 
-		default false, set to true to cause the Appender not block the 
-		application and just drop the messages 
-		-->        
-		<neverBlock>true</neverBlock>
-	</appender>	
+        <!-- <queueSize>1</queueSize>  -->
 
-	<!-- Set level to "OFF" to disable logging. -->	
-	<root level="INFO">
-		<appender-ref ref="ASYNC_CONSOLE" />
-		<appender-ref ref="ASYNC_FILE" />
-	</root>	
-	
+        <!-- default false -->
+        <!-- <includeCallerData>false</includeCallerData> -->
+
+        <!-- 
+        default false, set to true to cause the Appender not block the 
+        application and just drop the messages 
+        -->        
+        <neverBlock>true</neverBlock>
+    </appender>    
+
+    <!-- Set level to "OFF" to disable logging. -->    
+    <root level="INFO">
+        <appender-ref ref="ASYNC_CONSOLE" />
+        <appender-ref ref="ASYNC_FILE" />
+    </root>    
+    
 </configuration>
