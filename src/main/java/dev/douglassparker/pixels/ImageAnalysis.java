@@ -178,7 +178,7 @@ class ImageAnalysis implements Function<String, Mono<String>> {
                 top3Count[1] = value;
                 top3Pixels[2] = top3Pixels[1];
                 top3Pixels[1] = key;
-            }  else if (value > top3Count[1]) {
+            }  else if (value > top3Count[2]) {
                 top3Count[2] = value;
                 top3Pixels[2] = key;
             }
